@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
+import PageOne from './PageOne';
+import PageTwo from './PageTwo';
+import styled from 'styled-components';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+const Div = styled.div `
+  height: 10000px;
+`
+
+
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Div>
+        <Switch>
+          <ReactCSSTransitionGroup
+            transitionName="example"
+            transitionAppear={true}
+            transitionAppearTimeout={500}
+            transitionEnter={false}
+            transitionLeave={false}>
+            <Route exact path='/' component={PageOne} />
+            <Route path='/admin' component={PageTwo} />
+          </ReactCSSTransitionGroup>
+        </Switch>
+      </Div>
     );
   }
 }
